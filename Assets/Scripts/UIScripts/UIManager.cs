@@ -1,9 +1,7 @@
 using System.Collections;
 using UnityEngine;
-using DG.Tweening;
-using UnityEditor.VersionControl;
 using UnityEngine.UI;
-public partial class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     [Header("Splash Screen")] 
     [SerializeField] private Image OvertimeImage;
@@ -16,20 +14,15 @@ public partial class UIManager : MonoBehaviour
     [SerializeField] private Button stats;
     [SerializeField] private Button settings;
 
+    [SerializeField] private GameObject mainMenuPannel;
     [SerializeField] private GameObject statPannel;
     [SerializeField] private GameObject settingPannel;
     [SerializeField] private GameObject journalPannel;
-    
+    [SerializeField] private GameObject IngamePannel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         registerButtons();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void playButtonOnSplashScreen()
@@ -54,8 +47,37 @@ public partial class UIManager : MonoBehaviour
     {
         playButton.onClick.AddListener(playButtonOnSplashScreen);
         
-        settings.onClick.AddListener(() => settingPannel.SetActive(true));
-        journal.onClick.AddListener(() => journalPannel.SetActive(true));
-        stats.onClick.AddListener(() => statPannel.SetActive(true) );
+        settings.onClick.AddListener(() =>
+        {
+            settingPannel.SetActive(true);
+            mainMenuPannel.SetActive(false);
+        });
+        
+        journal.onClick.AddListener(() => 
+        {
+            journalPannel.SetActive(true);
+            mainMenuPannel.SetActive(false);
+        });
+        stats.onClick.AddListener(() => 
+        {
+            statPannel.SetActive(true);
+            mainMenuPannel.SetActive(false);
+        });
+        
+        startDay.onClick.AddListener(() =>
+        {
+            mainMenuPannel.SetActive(false);
+            IngamePannel.SetActive(true);
+        });
+        
+    }
+
+    public void closeAll()
+    {
+        mainMenuPannel.SetActive(true);
+        settingPannel.SetActive(false);
+        statPannel.SetActive(false);
+        journalPannel.SetActive(false);
+        IngamePannel.SetActive(false);
     }
 }
