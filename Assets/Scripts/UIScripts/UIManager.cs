@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject settingPannel;
     [SerializeField] private GameObject journalPannel;
     [SerializeField] private GameObject IngamePannel;
+
+    [SerializeField]
+    private GameObject character;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -66,6 +69,7 @@ public class UIManager : MonoBehaviour
         
         startDay.onClick.AddListener(() =>
         {
+            character.SetActive(true);
             mainMenuPannel.SetActive(false);
             IngamePannel.SetActive(true);
         });
@@ -74,6 +78,7 @@ public class UIManager : MonoBehaviour
 
     public void closeAll()
     {
+        character.SetActive(false);
         mainMenuPannel.SetActive(true);
         settingPannel.SetActive(false);
         statPannel.SetActive(false);
