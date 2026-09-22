@@ -28,7 +28,6 @@ public class ClockTiming : MonoBehaviour
         StartCoroutine(RotateSecoundDial());
         _hour = DateTime.Now.Hour;
         _minute = DateTime.Now.Minute;
-        
         SetHourAndMinute(_hour, _minute);
         updateMaterials();
     }
